@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -22,6 +23,7 @@ func main() {
 
 	fmt.Println("Average : ", getAverage(myNbrs, len(myNbrs)))
 	fmt.Println("Median : ", getMedian(myNbrs))
+	fmt.Println("Variance : ", getVariance(myNbrs))
 }
 
 func getAverage(nbrs []int, length int) int {
@@ -51,4 +53,14 @@ func getMedian(nbrs []int) int {
 		Median = (nb0 + nb1) / 2
 	}
 	return Median
+}
+
+func getVariance(nbrs []int) float64{
+	var Variance float64
+	myAvr := float64(getAverage(nbrs, len(nbrs)))
+	for i := 0; i < len(nbrs); i++ {
+		Variance += (float64(nbrs[i]) - myAvr) * (float64(nbrs[i]) - myAvr)
+
+	}
+	return math.Round(Variance / float64(len(nbrs)))
 }
